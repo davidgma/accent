@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Setting } from 'src/app/services/settings.service';
+import { Setting } from '../../services/settings.service';
 
 
 @Component({

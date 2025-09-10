@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { EnvironmentMonitorService } from 'src/app/services/environment-monitor.service';
-import { LoggerService } from 'src/app/services/logger.service';
-import { PlaybackService, PlayingState } from 'src/app/services/playback.service';
-import { RecordingService, RecordingState } from 'src/app/services/recording.service';
-import { SettingEvent, SettingsService, Setting } from 'src/app/services/settings.service';
+import { EnvironmentMonitorService } from '../../services/environment-monitor.service';
+import { LoggerService } from '../../services/logger.service';
+import { PlaybackService, PlayingState } from '../../services/playback.service';
+import { RecordingService, RecordingState } from '../../services/recording.service';
+import { SettingEvent, SettingsService, Setting } from '../../services/settings.service';
+import { MicComponent } from '../../icons/mic/mic.component';
+import { PlayComponent } from '../../icons/play/play.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  imports: [MicComponent, PlayComponent]
 })
 export class MainComponent {
   private moduleName = 'MainComponent';
@@ -28,6 +31,8 @@ export class MainComponent {
   private audioAsBlob = new Blob();
   private playCount = 0;
   private audioBlobStartTime = 0;
+  private lockedLostFocus;
+  private lockedGainedFocus;
 
   constructor(public rs: RecordingService,
     public ps: PlaybackService,
@@ -35,6 +40,9 @@ export class MainComponent {
     private em: EnvironmentMonitorService,
     private ss: SettingsService
   ) {
+
+    this.lockedLostFocus = this.ls.lock(this.lostFocus, this);
+    this.lockedGainedFocus = this.ls.lock(this.gainedFocus, this);
 
     let functionName = 'constructor';
     this.ls.log('Called.', this.moduleName, functionName, 1);
@@ -93,7 +101,7 @@ export class MainComponent {
     }
   }
 
-  private lockedLostFocus = this.ls.lock(this.lostFocus, this);
+  
   async lostFocus() {
     let functionName = 'lostFocus';
     this.ls.log('Called. ', this.moduleName, functionName, 1);
@@ -103,7 +111,7 @@ export class MainComponent {
     this.ls.log('Final. ', this.moduleName, functionName, 1);
   }
 
-  private lockedGainedFocus = this.ls.lock(this.gainedFocus, this);
+  
   async gainedFocus() {
     let functionName = 'gainedFocus';
     await this.rs.start();

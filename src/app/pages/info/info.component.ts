@@ -11,10 +11,10 @@ import { Component, OnInit, Inject, LOCALE_ID, PLATFORM_ID } from '@angular/core
 
 import localeGb from '@angular/common/locales/en-GB';
 
-import { PlaybackService, PlayingState } from 'src/app/services/playback.service';
-import { RecordingService, RecordingState } from 'src/app/services/recording.service';
-import { LoggerService } from 'src/app/services/logger.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { PlaybackService, PlayingState } from '../../services/playback.service';
+import { RecordingService, RecordingState } from '../../services/recording.service';
+import { LoggerService } from '../../services/logger.service';
+import { SettingsService } from '../../services/settings.service';
 
 
 @Component({

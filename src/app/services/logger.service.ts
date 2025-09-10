@@ -11,7 +11,7 @@ export class LoggerService {
   logState = new EventEmitter<void>();
 
   // This is set by MainComponent.ngOnInit
-  debug = 0; // 0 - no debugging, 1 - general, 2 - specific
+  debug = 1; // 0 - no debugging, 1 - general, 2 - specific
   logged = new EventEmitter<string>();
   messages = new Array<string>();
 

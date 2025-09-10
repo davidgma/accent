@@ -1,16 +1,20 @@
-<p
-*ngFor="let setting of ss.settings.values()">
-<app-boolean-setting
-*ngIf="settingType(setting) === 'Boolean'"
-[setting]="setting"
-></app-boolean-setting>
-<app-int-setting
-*ngIf="settingType(setting) === 'Integer'"
-[setting]="setting"
-></app-int-setting>
-<app-numeric-setting
-*ngIf="settingType(setting) === 'OneDecimal'"
-[setting]="setting"
-></app-numeric-setting>
-</p>
+@for (setting of ss.settings.values(); track setting) {
+  <p>
+    @if (settingType(setting) === 'Boolean') {
+      <app-boolean-setting
+        [setting]="setting"
+      ></app-boolean-setting>
+    }
+    @if (settingType(setting) === 'Integer') {
+      <app-int-setting
+        [setting]="setting"
+      ></app-int-setting>
+    }
+    @if (settingType(setting) === 'OneDecimal') {
+      <app-numeric-setting
+        [setting]="setting"
+      ></app-numeric-setting>
+    }
+  </p>
+}
 

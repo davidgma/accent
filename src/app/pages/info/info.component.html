@@ -1,4 +1,6 @@
 <section>
-  <p *ngFor="let m of messages">{{m}}</p>
+  @for (m of messages; track m) {
+    <p>{{m}}</p>
+  }
 </section>
 

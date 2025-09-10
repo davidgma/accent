@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from 'src/app/services/logger.service';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-debug',
